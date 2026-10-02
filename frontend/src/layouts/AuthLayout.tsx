@@ -1,17 +1,18 @@
 import { Outlet, Link } from 'react-router-dom';
+import EedooWordmark from '../assets/Eedao-Minimalist-Charcoal-Wordmark.svg';
 
 export default function AuthLayout() {
   return (
-    <div className="min-h-screen flex items-center justify-center bg-zinc-50 dark:bg-zinc-950 p-4">
+    <div className="min-h-screen flex items-center justify-center bg-zinc-50 p-4">
       <div className="w-full max-w-md">
-        <div className="text-center mb-8">
-          <Link to="/" className="text-3xl font-bold tracking-tight text-zinc-900 dark:text-zinc-50">
-            EeDOO
+        <div className="text-center mb-8 flex flex-col items-center">
+          <Link to="/" className="inline-block">
+            <img src={EedooWordmark} alt="Eedoo" className="h-8 w-auto select-none" />
           </Link>
-          <p className="text-sm text-zinc-500 mt-2">Intelligent Control Layer</p>
+          <p className="text-sm text-zinc-500 mt-4">Intelligent Control Layer</p>
         </div>
         
-        <div className="bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-2xl shadow-sm overflow-hidden p-6 md:p-8">
+        <div className="bg-white border border-zinc-200 rounded-2xl shadow-sm overflow-hidden p-6 md:p-8">
           <Outlet />
         </div>
       </div>

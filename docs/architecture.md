@@ -5,11 +5,11 @@ Eedoo is a modular personal productivity platform where an AI assistant acts as 
 ## High-Level Architecture
 
 ```text
-                         EeDOO PLATFORM
+                         Eedoo PLATFORM
                               │
                  ┌────────────┴────────────┐
                  │                         │
-             EeDOO AI                  EeDOO APPS
+             Eedoo AI                  Eedoo APPS
                  │                         │
                  │              ┌──────────┼──────────┐
                  │              │          │          │
@@ -26,13 +26,13 @@ Eedoo is a modular personal productivity platform where an AI assistant acts as 
    - Frontend: UI, state, presentation.
    - Backend: Business logic, database, AI orchestration.
 2. **Feature Isolation**: Applications (Money, Tasks, Notes) are conceptually and structurally isolated.
-3. **Symmetry**: Anything Edoo AI can do must be possible manually through the UI via the same underlying services.
+3. **Symmetry**: Anything Eedoo AI can do must be possible manually through the UI via the same underlying services.
 4. **No Direct DB for AI**: The AI interacts with features by selecting explicit tools which then call backend services. It never executes arbitrary SQL.
 
 ## AI Flow
 
 ```text
-User Message -> Edoo AI -> Intent Recognition -> Tool Selection -> Validation -> Backend Service -> Database
+User Message -> Eedoo AI -> Intent Recognition -> Tool Selection -> Validation -> Backend Service -> Database
 ```
 
 ## Core Entities (Future)

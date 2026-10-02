@@ -55,61 +55,61 @@ export default function RegisterPage() {
   return (
     <div className="flex flex-col space-y-6">
       <div className="text-center">
-        <h1 className="text-2xl font-bold tracking-tight text-zinc-900 dark:text-zinc-100">Create an account</h1>
+        <h1 className="text-2xl font-bold tracking-tight text-zinc-900">Create an account</h1>
         <p className="text-sm text-zinc-500 mt-1">Enter your details to get started</p>
       </div>
 
       {error && (
-        <div className="p-3 text-sm text-red-500 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-900/50 rounded-lg">
+        <div className="p-3 text-sm text-red-500 bg-red-50 border border-red-200 rounded-lg">
           {error}
         </div>
       )}
 
       <form onSubmit={handleSubmit} className="flex flex-col space-y-4">
         <div className="space-y-1">
-          <label className="text-sm font-medium text-zinc-700 dark:text-zinc-300">Name</label>
+          <label className="text-sm font-medium text-zinc-700">Name</label>
           <input
             type="text"
             required
             value={name}
             onChange={(e) => setName(e.target.value)}
-            className="w-full px-3 py-2 border border-zinc-300 dark:border-zinc-700 rounded-lg bg-transparent focus:outline-none focus:ring-2 focus:ring-zinc-900 dark:focus:ring-zinc-100"
+            className="w-full px-3 py-2 border border-zinc-300 rounded-lg bg-transparent focus:outline-none focus:ring-2 focus:ring-zinc-900"
             placeholder="Eyad"
           />
         </div>
         
         <div className="space-y-1">
-          <label className="text-sm font-medium text-zinc-700 dark:text-zinc-300">Email</label>
+          <label className="text-sm font-medium text-zinc-700">Email</label>
           <input
             type="email"
             required
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            className="w-full px-3 py-2 border border-zinc-300 dark:border-zinc-700 rounded-lg bg-transparent focus:outline-none focus:ring-2 focus:ring-zinc-900 dark:focus:ring-zinc-100"
+            className="w-full px-3 py-2 border border-zinc-300 rounded-lg bg-transparent focus:outline-none focus:ring-2 focus:ring-zinc-900"
             placeholder="you@example.com"
           />
         </div>
         
         <div className="space-y-1">
-          <label className="text-sm font-medium text-zinc-700 dark:text-zinc-300">Password</label>
+          <label className="text-sm font-medium text-zinc-700">Password</label>
           <input
             type="password"
             required
             value={password}
             onChange={(e) => setPassword(e.target.value)}
-            className="w-full px-3 py-2 border border-zinc-300 dark:border-zinc-700 rounded-lg bg-transparent focus:outline-none focus:ring-2 focus:ring-zinc-900 dark:focus:ring-zinc-100"
+            className="w-full px-3 py-2 border border-zinc-300 rounded-lg bg-transparent focus:outline-none focus:ring-2 focus:ring-zinc-900"
             placeholder="••••••••"
           />
         </div>
         
         <div className="space-y-1">
-          <label className="text-sm font-medium text-zinc-700 dark:text-zinc-300">Confirm Password</label>
+          <label className="text-sm font-medium text-zinc-700">Confirm Password</label>
           <input
             type="password"
             required
             value={confirmPassword}
             onChange={(e) => setConfirmPassword(e.target.value)}
-            className="w-full px-3 py-2 border border-zinc-300 dark:border-zinc-700 rounded-lg bg-transparent focus:outline-none focus:ring-2 focus:ring-zinc-900 dark:focus:ring-zinc-100"
+            className="w-full px-3 py-2 border border-zinc-300 rounded-lg bg-transparent focus:outline-none focus:ring-2 focus:ring-zinc-900"
             placeholder="••••••••"
           />
         </div>
@@ -117,7 +117,7 @@ export default function RegisterPage() {
         <button
           type="submit"
           disabled={isLoading}
-          className="w-full py-2 px-4 mt-2 bg-zinc-900 dark:bg-zinc-100 text-white dark:text-zinc-900 rounded-lg font-medium hover:bg-zinc-800 dark:hover:bg-zinc-200 transition-colors disabled:opacity-50"
+          className="w-full py-2 px-4 mt-2 bg-zinc-900 text-white rounded-lg font-medium hover:bg-zinc-800 transition-colors disabled:opacity-50"
         >
           {isLoading ? 'Creating account...' : 'Create Account'}
         </button>
@@ -125,17 +125,17 @@ export default function RegisterPage() {
 
       <div className="relative">
         <div className="absolute inset-0 flex items-center">
-          <div className="w-full border-t border-zinc-200 dark:border-zinc-800"></div>
+          <div className="w-full border-t border-zinc-200"></div>
         </div>
         <div className="relative flex justify-center text-sm">
-          <span className="px-2 bg-white dark:bg-zinc-900 text-zinc-500">OR</span>
+          <span className="px-2 bg-white text-zinc-500">OR</span>
         </div>
       </div>
 
       <button
         onClick={handleGoogleLogin}
         type="button"
-        className="w-full flex items-center justify-center gap-2 py-2 px-4 border border-zinc-300 dark:border-zinc-700 rounded-lg font-medium hover:bg-zinc-50 dark:hover:bg-zinc-800 transition-colors"
+        className="w-full flex items-center justify-center gap-2 py-2 px-4 border border-zinc-300 rounded-lg font-medium hover:bg-zinc-50 transition-colors"
       >
         <svg className="w-5 h-5" viewBox="0 0 24 24">
           <path fill="currentColor" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" />
@@ -148,7 +148,7 @@ export default function RegisterPage() {
 
       <p className="text-center text-sm text-zinc-500">
         Already have an account?{' '}
-        <Link to="/login" className="font-medium text-zinc-900 dark:text-zinc-100 hover:underline">
+        <Link to="/login" className="font-medium text-zinc-900 hover:underline">
           Sign in
         </Link>
       </p>
