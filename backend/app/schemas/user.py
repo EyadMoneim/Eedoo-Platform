@@ -12,6 +12,11 @@ class UserBase(BaseModel):
 class UserCreate(UserBase):
     password: str = Field(..., min_length=8)
 
+# Properties to receive via API on update
+class UserUpdate(BaseModel):
+    name: Optional[str] = Field(None, max_length=255)
+    avatar_url: Optional[str] = None
+
 # Properties to receive via API on login
 class UserLogin(BaseModel):
     email: EmailStr

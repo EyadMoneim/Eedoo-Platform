@@ -1,80 +1,44 @@
-import { useMoneySummary } from '../../hooks/useMoneyQueries';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-
-function SummaryCard({ title, amount, currency }: { title: string, amount: string | number, currency: string }) {
-  return (
-    <div 
-      className="p-5 rounded-2xl"
-      style={{ 
-        backgroundColor: 'var(--surface-2)',
-        border: '1px solid var(--border-soft)',
-      }}
-    >
-      <h3 className="text-sm font-extralight" style={{ color: 'var(--text-muted)' }}>{title}</h3>
-      <p className="text-3xl font-extrabold mt-2" style={{ color: 'var(--text-primary)' }}>
-        {Number(amount).toFixed(2)} <span className="text-lg font-light" style={{ color: 'var(--text-muted)' }}>{currency}</span>
-      </p>
-    </div>
-  );
-}
+import { ArrowUpRight, ReceiptText, Users } from 'lucide-react';
+import { useMoneySummary } from '../../hooks/useMoneyQueries';
 
 export default function MoneyDashboard() {
   const { data: summary, isLoading, isError } = useMoneySummary();
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
+  const format = (value: string | number) => new Intl.NumberFormat(i18n.language === 'ar' ? 'ar-EG' : 'en-EG', { maximumFractionDigits: 2 }).format(Number(value));
 
-  if (isLoading) return <div className="font-light" style={{ color: 'var(--text-muted)' }}>Loading...</div>;
-  if (isError || !summary) return <div className="text-red-500">{t('money.loading_failed')}</div>;
+  if (isLoading) return <div className="money-hero" aria-label="Loading money summary"><div className="balance-feature animate-pulse h-52" /><div className="panel animate-pulse h-52" /></div>;
+  if (isError || !summary) return <div className="error-panel" role="alert">{t('money.loading_failed')}</div>;
 
-  const currency = t('money.currency');
+  const metrics = [
+    [t('money.income'), summary.total_income],
+    [t('money.expenses'), summary.total_personal_expenses],
+    [t('money.owed_to_you'), summary.money_owed_to_user],
+    [t('money.you_owe'), summary.money_user_owes],
+  ] as const;
 
   return (
-    <div className="space-y-8">
-      {/* Top Level Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <SummaryCard title={t('money.cash_balance')} amount={summary.cash_balance} currency={currency} />
-        <SummaryCard title={t('money.net_position')} amount={summary.net_position} currency={currency} />
+    <div className="space-y-7">
+      <div className="money-hero">
+        <section className="balance-feature">
+          <p className="text-sm text-[#d7c4ed]">{t('money.cash_balance')}</p>
+          <p className="balance-value mt-4">{format(summary.cash_balance)} <span className="text-lg font-medium text-[#d7c4ed]">{t('money.currency')}</span></p>
+          <div className="mt-9 flex flex-wrap gap-3">
+            <Link to="/app/money/transactions" className="button-primary"><ReceiptText size={17} aria-hidden="true" />{t('money.view_transactions')}</Link>
+            <Link to="/app/money/people" className="button-secondary"><Users size={17} aria-hidden="true" />{t('money.manage_people')}</Link>
+          </div>
+        </section>
+        <section className="panel p-6 flex flex-col justify-between">
+          <p className="text-sm text-[var(--text-muted)]">{t('money.net_position')}</p>
+          <div>
+            <p className="text-3xl font-semibold tracking-tight tabular-nums break-all">{format(summary.net_position)} <span className="text-base font-normal text-[var(--text-muted)]">{t('money.currency')}</span></p>
+            <Link to="/app/money/people" className="inline-flex items-center gap-1 mt-5 text-sm font-semibold text-[var(--accent)] hover:underline">{t('money.manage_people')} <ArrowUpRight size={16} aria-hidden="true" /></Link>
+          </div>
+        </section>
       </div>
-
-      {/* Breakdown Cards */}
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-        <SummaryCard title={t('money.income')} amount={summary.total_income} currency={currency} />
-        <SummaryCard title={t('money.expenses')} amount={summary.total_personal_expenses} currency={currency} />
-        <SummaryCard title={t('money.owed_to_you')} amount={summary.money_owed_to_user} currency={currency} />
-        <SummaryCard title={t('money.you_owe')} amount={summary.money_user_owes} currency={currency} />
-      </div>
-
-      {/* Quick Actions */}
-      <div className="flex gap-4">
-        <Link 
-          to="/app/money/transactions" 
-          className="px-5 py-2.5 rounded-xl text-sm font-light transition-all duration-300"
-          style={{ 
-            backgroundColor: 'var(--accent)',
-            color: '#ffffff',
-          }}
-          onMouseEnter={(e) => e.currentTarget.style.backgroundColor = 'var(--accent-hover)'}
-          onMouseLeave={(e) => e.currentTarget.style.backgroundColor = 'var(--accent)'}
-        >
-          {t('money.view_transactions')}
-        </Link>
-        <Link 
-          to="/app/money/people" 
-          className="px-5 py-2.5 rounded-xl text-sm font-light transition-all duration-300"
-          style={{ 
-            backgroundColor: 'var(--surface-3)',
-            border: '1px solid var(--border)',
-            color: 'var(--text-primary)',
-          }}
-          onMouseEnter={(e) => {
-            e.currentTarget.style.borderColor = 'var(--accent)';
-          }}
-          onMouseLeave={(e) => {
-            e.currentTarget.style.borderColor = 'var(--border)';
-          }}
-        >
-          {t('money.manage_people')}
-        </Link>
+      <div className="metric-list">
+        {metrics.map(([label, value]) => <div className="metric" key={label}><p className="metric-label">{label}</p><p className="metric-value">{format(value)} <span className="text-sm font-normal text-[var(--text-muted)]">{t('money.currency')}</span></p></div>)}
       </div>
     </div>
   );

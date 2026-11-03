@@ -38,14 +38,14 @@ export default function GoogleCallback() {
   return (
     <div className="flex flex-col items-center justify-center min-h-[400px] space-y-4">
       {error ? (
-        <div className="text-red-500 font-medium bg-red-50 p-4 rounded-lg">
+        <div className="error-panel" role="alert">
           {error}
           <p className="text-sm mt-2">Redirecting to login...</p>
         </div>
       ) : (
         <>
-          <div className="w-8 h-8 border-4 border-zinc-200 border-t-zinc-900 rounded-full animate-spin"></div>
-          <p className="text-zinc-600 font-medium">Authenticating with Google...</p>
+          <div className="w-8 h-8 border-4 border-[var(--border)] border-t-[var(--accent)] rounded-full animate-spin" aria-hidden="true"></div>
+          <p className="text-[var(--text-muted)] font-medium">Authenticating with Google...</p>
         </>
       )}
     </div>

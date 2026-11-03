@@ -6,7 +6,7 @@ from app.core.database import get_db
 from app.core.security import get_current_user
 from app.core.config import settings
 from app.models.user import User
-from app.schemas.user import UserCreate, UserResponse, TokenResponse, GoogleAuthRequest
+from app.schemas.user import UserCreate, UserUpdate, UserResponse, TokenResponse, GoogleAuthRequest
 from app.services.auth import (
     register_user,
     authenticate_user,
@@ -74,6 +74,21 @@ async def google_auth(
 
 @router.get("/me", response_model=UserResponse)
 async def get_me(current_user: User = Depends(get_current_user)):
+    return current_user
+
+@router.patch("/me", response_model=UserResponse)
+async def update_me(
+    user_update: UserUpdate,
+    current_user: User = Depends(get_current_user),
+    db: AsyncSession = Depends(get_db)
+):
+    if user_update.name is not None:
+        current_user.name = user_update.name
+    if user_update.avatar_url is not None:
+        current_user.avatar_url = user_update.avatar_url
+    
+    await db.commit()
+    await db.refresh(current_user)
     return current_user
 
 @router.post("/logout")

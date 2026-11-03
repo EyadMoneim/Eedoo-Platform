@@ -1,134 +1,67 @@
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import { ArrowUpRight, Wallet, ListTodo, Bell, ReceiptText, Users } from 'lucide-react';
+import { useAuth } from '../contexts/AuthContext';
+import ChatPanel from '../components/ChatPanel';
 
 export default function HomePage() {
-  const { t, i18n } = useTranslation();
-
-  const services = [
-    { key: 'money', label: t('sidebar.money'), color: 'var(--money)', icon: 'EGP', path: '/app/money', disabled: false },
-    { key: 'tasks', label: t('sidebar.tasks'), color: 'var(--tasks)', icon: null, path: null, disabled: true },
-    { key: 'reminders', label: t('sidebar.reminders'), color: 'var(--reminders)', icon: null, path: null, disabled: true },
-    { key: 'notes', label: t('sidebar.notes'), color: 'var(--notes)', icon: null, path: null, disabled: true },
-  ];
+  const { i18n, t } = useTranslation();
+  const { user } = useAuth();
+  const ar = i18n.language === 'ar';
+  const firstName = user?.name?.split(' ')[0];
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-[70vh] text-center space-y-12">
-      
-      <div className="space-y-4">
-        <h1
-          className="text-4xl md:text-5xl font-extrabold tracking-wide"
-          style={{ color: 'var(--text-primary)' }}
-        >
-          {t('home.title')}
-        </h1>
-        <p
-          className="max-w-lg mx-auto font-extralight text-base"
-          style={{ color: 'var(--text-muted)' }}
-        >
-          {t('home.subtitle')}
-        </p>
-      </div>
+    <div className="space-y-10">
+      <section className="home-hero relative overflow-hidden rounded-[24px] border border-[#554369] bg-[#241d30] px-6 py-10 md:px-12 md:py-14">
+        <div className="absolute -end-16 -bottom-28 h-72 w-72 rounded-full border border-[#af83ff33] shadow-[0_0_0_55px_#af83ff0a,0_0_0_110px_#af83ff08]" aria-hidden="true" />
+        <div className="relative max-w-[680px]">
+          <h1 className="display-face text-[clamp(2.5rem,5vw,4.5rem)] leading-[1.1]">
+            {ar ? `كل حاجة في مكانها${firstName ? ` يا ${firstName}` : ''}.` : `Everything in its place${firstName ? `, ${firstName}` : ''}.`}
+          </h1>
+          <p className="mt-5 max-w-xl text-[var(--text-secondary)] text-base md:text-lg">
+            {ar ? 'تابع فلوسك وابدأ يومك من مكان واحد واضح وسهل.' : 'Keep track of your money and move through your day with a little more clarity.'}
+          </p>
+          <Link to="/app/money" className="button-primary mt-8">
+            {ar ? 'افتح فلوسك' : 'Open your money'} <ArrowUpRight size={17} aria-hidden="true" />
+          </Link>
+        </div>
+      </section>
 
-      {/* AI Chat Input */}
-      <div className="w-full max-w-2xl">
-        <div 
-          className="relative flex items-center w-full rounded-2xl overflow-hidden px-5 py-4 transition-all duration-300"
-          style={{ 
-            backgroundColor: 'var(--surface-2)',
-            border: '1px solid var(--border-soft)',
-          }}
-          onMouseEnter={(e) => {
-            e.currentTarget.style.borderColor = 'var(--border)';
-          }}
-          onMouseLeave={(e) => {
-            e.currentTarget.style.borderColor = 'var(--border-soft)';
-          }}
-        >
-          <input
-            type="text"
-            placeholder={t('home.placeholder')}
-            className="w-full bg-transparent outline-none font-light text-sm"
-            style={{ color: 'var(--text-primary)' }}
-            disabled
-          />
-          <div 
-            className={cn("w-8 h-8 rounded-full flex items-center justify-center cursor-not-allowed shrink-0", i18n.language === 'ar' ? 'mr-3' : 'ml-3')}
-            style={{ backgroundColor: 'var(--accent-soft)' }}
-          >
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M12 4L12 20M12 4L6 10M12 4L18 10" stroke="var(--accent)" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
-            </svg>
+      <ChatPanel />
+
+      <section aria-labelledby="home-spaces">
+        <div className="flex items-end justify-between gap-4 mb-5">
+          <div>
+            <h2 id="home-spaces" className="text-xl md:text-2xl font-semibold tracking-tight">{ar ? 'مساحاتك' : 'Your spaces'}</h2>
+            <p className="page-subtitle mt-1 text-sm">{ar ? 'ابدأ بالحاجة اللي محتاجها دلوقتي.' : 'Pick up where you need to.'}</p>
           </div>
         </div>
-      </div>
+        <div className="grid gap-4 md:grid-cols-3">
+          <Link to="/app/money" className="panel group p-6 min-h-52 flex flex-col justify-between hover:border-[#755d90] transition-colors">
+            <div className="w-11 h-11 rounded-xl bg-[var(--accent-soft)] text-[var(--accent)] grid place-items-center"><Wallet size={21} aria-hidden="true" /></div>
+            <div>
+              <div className="flex items-center justify-between"><h3 className="text-lg font-semibold">{t('sidebar.money')}</h3><ArrowUpRight size={18} className="text-[var(--accent)] group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" aria-hidden="true" /></div>
+              <p className="mt-1 text-sm text-[var(--text-muted)]">{ar ? 'مصروفاتك، دخلك، والفلوس بينك وبين الناس.' : 'Income, spending, and what you owe or are owed.'}</p>
+            </div>
+          </Link>
+          <div className="panel p-6 min-h-52 flex flex-col justify-between opacity-75">
+            <div className="w-11 h-11 rounded-xl bg-[var(--surface-3)] text-[var(--tasks)] grid place-items-center"><ListTodo size={21} aria-hidden="true" /></div>
+            <div><h3 className="text-lg font-semibold">{t('sidebar.tasks')}</h3><p className="mt-1 text-sm text-[var(--text-muted)]">{ar ? 'قريبًا: مهامك اليومية في مكان واحد.' : 'Coming soon: a simple home for your daily tasks.'}</p></div>
+          </div>
+          <div className="panel p-6 min-h-52 flex flex-col justify-between opacity-75">
+            <div className="w-11 h-11 rounded-xl bg-[var(--surface-3)] text-[var(--reminders)] grid place-items-center"><Bell size={21} aria-hidden="true" /></div>
+            <div><h3 className="text-lg font-semibold">{t('sidebar.reminders')}</h3><p className="mt-1 text-sm text-[var(--text-muted)]">{ar ? 'قريبًا: مواعيدك المهمة من غير زحمة.' : 'Coming soon: the important things, right on time.'}</p></div>
+          </div>
+        </div>
+      </section>
 
-      {/* Service Cards */}
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-4 w-full max-w-3xl pt-8">
-        {services.map((service) => {
-          const CardContent = (
-            <>
-              <div 
-                className="w-12 h-12 rounded-full flex items-center justify-center mb-3 transition-transform group-hover:scale-110"
-                style={{ backgroundColor: `color-mix(in srgb, ${service.color} 15%, transparent)` }}
-              >
-                {service.icon ? (
-                  <span className="text-sm font-extrabold" style={{ color: service.color }}>
-                    {service.icon}
-                  </span>
-                ) : (
-                  <div 
-                    className="w-6 h-6 rounded-full opacity-40"
-                    style={{ backgroundColor: service.color }}
-                  />
-                )}
-              </div>
-              <span className="text-sm font-light" style={{ color: 'var(--text-primary)' }}>
-                {service.label}
-              </span>
-            </>
-          );
-
-          if (service.disabled || !service.path) {
-            return (
-              <div 
-                key={service.key}
-                className="p-6 rounded-xl flex flex-col items-center justify-center gap-1 opacity-50 cursor-not-allowed"
-                style={{ 
-                  backgroundColor: 'var(--surface-2)',
-                  border: '1px solid var(--border-soft)',
-                }}
-              >
-                {CardContent}
-              </div>
-            );
-          }
-
-          return (
-            <Link 
-              key={service.key}
-              to={service.path!}
-              className="p-6 rounded-xl flex flex-col items-center justify-center gap-1 cursor-pointer group transition-all duration-300"
-              style={{ 
-                backgroundColor: 'var(--surface-2)',
-                border: '1px solid var(--border-soft)',
-              }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.borderColor = `color-mix(in srgb, ${service.color} 30%, var(--border))`;
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.borderColor = 'var(--border-soft)';
-              }}
-            >
-              {CardContent}
-            </Link>
-          );
-        })}
-      </div>
-      
+      <section className="panel p-6 md:p-8" aria-labelledby="quick-start">
+        <h2 id="quick-start" className="text-xl font-semibold">{ar ? 'ابدأ بسرعة' : 'Quick start'}</h2>
+        <div className="mt-4 flex flex-wrap gap-3">
+          <Link to="/app/money/transactions" className="button-secondary"><ReceiptText size={17} aria-hidden="true" />{ar ? 'الحركات' : 'Transactions'}</Link>
+          <Link to="/app/money/people" className="button-secondary"><Users size={17} aria-hidden="true" />{ar ? 'الناس' : 'People'}</Link>
+        </div>
+      </section>
     </div>
   );
-}
-
-function cn(...classes: (string | false | undefined)[]) {
-  return classes.filter(Boolean).join(' ');
 }

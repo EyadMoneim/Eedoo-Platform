@@ -36,5 +36,10 @@ export const authService = {
   async getMe(): Promise<User> {
     const response = await api.get<User>('/auth/me');
     return response.data;
+  },
+
+  async updateProfile(data: { name?: string; avatar_url?: string }): Promise<User> {
+    const response = await api.patch<User>('/auth/me', data);
+    return response.data;
   }
 };

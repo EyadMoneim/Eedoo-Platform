@@ -12,15 +12,10 @@ export default function RootLayout() {
   }, [i18n.language]);
 
   return (
-    <div className="min-h-screen flex flex-col" style={{ backgroundColor: 'var(--bg)' }}>
-      {/* Top Navbar */}
+    <div className="app-shell">
       <Navbar />
-
-      {/* Main Content Area */}
-      <main className="flex-1 p-6 md:p-12 overflow-y-auto">
-        <div className="max-w-5xl mx-auto">
-          <Outlet />
-        </div>
+      <main className="app-main">
+        <Outlet />
       </main>
     </div>
   );

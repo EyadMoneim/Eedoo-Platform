@@ -14,6 +14,11 @@ class Settings(BaseSettings):
     google_client_secret: Optional[str] = None
     google_redirect_uri: Optional[str] = None
     ai_provider_api_key: Optional[str] = None
+    smtp_host: Optional[str] = None
+    smtp_port: int = 587
+    smtp_user: Optional[str] = None
+    smtp_password: Optional[str] = None
+    smtp_from: Optional[str] = None
 
     model_config = SettingsConfigDict(env_file=(".env", "../.env"), env_file_encoding="utf-8", extra="ignore")
 

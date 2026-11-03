@@ -10,6 +10,7 @@ interface AuthContextType {
   register: (data: any) => Promise<void>;
   googleLogin: (code: string) => Promise<void>;
   logout: () => Promise<void>;
+  updateProfile: (data: { name?: string; avatar_url?: string }) => Promise<void>;
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
@@ -63,6 +64,11 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     }
   };
 
+  const updateProfile = async (data: { name?: string; avatar_url?: string }) => {
+    const updatedUser = await authService.updateProfile(data);
+    setUser(updatedUser);
+  };
+
   const value = {
     user,
     isAuthenticated,
@@ -70,7 +76,8 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     login,
     register,
     googleLogin,
-    logout
+    logout,
+    updateProfile
   };
 
   return (

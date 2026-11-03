@@ -7,9 +7,7 @@ import {
   Wallet, 
   ListTodo, 
   Bell, 
-  StickyNote,
   LogOut,
-  BrainCircuit,
   Languages
 } from 'lucide-react';
 import { cn } from '../../lib/utils';
@@ -38,7 +36,6 @@ export const Sidebar = () => {
     { path: '/app/money', icon: Wallet, label: t('sidebar.money'), disabled: false, end: false },
     { path: '/app/tasks', icon: ListTodo, label: t('sidebar.tasks'), disabled: true, end: false },
     { path: '/app/reminders', icon: Bell, label: t('sidebar.reminders'), disabled: true, end: false },
-    { path: '/app/notes', icon: StickyNote, label: t('sidebar.notes'), disabled: true, end: false },
   ];
 
   return (

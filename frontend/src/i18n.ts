@@ -5,16 +5,19 @@ const resources = {
   en: {
     translation: {
       sidebar: {
+        home: "Home",
         dashboard: "Dashboard",
         money: "e-Money",
         tasks: "e-Tasks",
         reminders: "e-Reminders",
-        notes: "e-Notes",
         platform: "Platform",
         logout: "Log out",
         user_fallback_name: "User",
         user_fallback_email: "user@example.com",
-        user_initial: "U"
+        user_initial: "U",
+        profile: "Profile",
+        settings: "Settings",
+        appearance: "Appearance"
       },
       navbar: {
         greeting_morning: "Good morning",
@@ -48,7 +51,12 @@ const resources = {
         view_details: "View Details",
         delete: "Delete",
         add_person: "Add Person",
-        no_people: "No people found."
+        no_people: "No people found.",
+        back_to_people: "Back",
+        current_balance: "Current Balance",
+        total_lent: "Total Lent",
+        total_borrowed: "Total Borrowed",
+        person_not_found: "Person not found."
       },
       transactions: {
         title: "Transactions",
@@ -82,16 +90,19 @@ const resources = {
   ar: {
     translation: {
       sidebar: {
+        home: "الرئيسية",
         dashboard: "الخلاصة",
         money: "القرشين",
         tasks: "المصالح",
         reminders: "زنان المواعيد",
-        notes: "الكشكول",
         platform: "الروقان كله",
         logout: "أخلع",
         user_fallback_name: "يا صاحبي",
         user_fallback_email: "صاحب القهوة",
-        user_initial: "م"
+        user_initial: "م",
+        profile: "البروفايل",
+        settings: "التظبيطات",
+        appearance: "الشكل"
       },
       navbar: {
         greeting_morning: "صباح الفل",
@@ -125,7 +136,12 @@ const resources = {
         view_details: "التفاصيل",
         delete: "طير",
         add_person: "ضيف حد",
-        no_people: "مفيش حد لسة."
+        no_people: "مفيش حد لسة.",
+        back_to_people: "رجوع",
+        current_balance: "الحساب الحالي",
+        total_lent: "إجمالي السلف",
+        total_borrowed: "إجمالي الاستلاف",
+        person_not_found: "الشخص ده مش موجود."
       },
       transactions: {
         title: "الحركات",

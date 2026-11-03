@@ -1,8 +1,7 @@
-import { Outlet, Link, useLocation } from 'react-router-dom';
+import { Outlet, NavLink } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 
 export default function MoneyLayout() {
-  const location = useLocation();
   const { t } = useTranslation();
 
   const navItems = [
@@ -12,43 +11,34 @@ export default function MoneyLayout() {
   ];
 
   return (
-    <div className="flex flex-col gap-6">
-      <div className="flex items-center justify-between">
+    <div className="flex flex-col gap-7">
+      <div>
         <div>
-          <h1 className="text-3xl font-extrabold tracking-tight" style={{ color: 'var(--text-primary)' }}>
+          <h1 className="page-title">
             {t('money.title')}
           </h1>
-          <p className="font-extralight mt-1" style={{ color: 'var(--text-muted)' }}>
+          <p className="page-subtitle mt-2">
             {t('money.subtitle')}
           </p>
         </div>
       </div>
 
       {/* Internal Nav */}
-      <nav className="flex gap-4" style={{ borderBottom: '1px solid var(--border-soft)' }}>
-        {navItems.map((item) => {
-          const isActive = location.pathname === item.path || (item.path !== '/app/money' && location.pathname.startsWith(item.path));
-          return (
-            <Link
+      <nav className="section-tabs" aria-label="Money sections">
+        {navItems.map((item) => (
+            <NavLink
               key={item.path}
               to={item.path}
-              className="px-4 py-3 text-sm font-light border-b-2 transition-colors"
-              style={isActive ? {
-                borderColor: 'var(--accent)',
-                color: 'var(--text-primary)',
-              } : {
-                borderColor: 'transparent',
-                color: 'var(--text-muted)',
-              }}
+              end={item.path === '/app/money'}
+              className={({ isActive }) => isActive ? 'active' : ''}
             >
               {item.name}
-            </Link>
-          );
-        })}
+            </NavLink>
+        ))}
       </nav>
 
       {/* Main Feature Content */}
-      <div className="pt-2">
+      <div>
         <Outlet />
       </div>
     </div>

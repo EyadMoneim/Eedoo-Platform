@@ -1,300 +1,158 @@
-# ChatGPT — Style Reference
-> graphite ink on warm paper
+# OpenAI — Style Reference
+> Research lab notebook at noon.
 
 **Theme:** light
 
-ChatGPT uses a graphite-on-paper language: near-white canvas (#f9f9f9 sidebar) with the main conversation surface staying white, near-black ink for all primary text and icons, and zero chromatic accents. The entire UI is achromatic — meaning is carried by weight (600 headings, 400 body, 500 for emphasis) and spatial rhythm rather than color. Surfaces stay flat; elevation comes from a single hairline border at 1px rgba(0,0,0,0.05) rather than shadow. Controls are small, square-ish (10px radius), and chrome-light so the written response dominates. The system reads as restrained utility software — every pixel earns its place.
+Source measurements are normalized; roles and recommendations are interpreted. Font summary lists are independent, not paired by position. HTML examples are reconstructions, not source components.
 
-## Tokens — Colors
+OpenAI's interface operates as a typographic, editorial canvas — pure white surfaces, near-black type, and almost no chromatic identity. The system is defined by restraint: the only filled element on the page is the black 'Try ChatGPT' button, which functions as a single period at the end of an otherwise monochrome sentence. Hairline borders at 12% black opacity create structure without weight; cards carry a barely-perceptible 6px radius that whispers geometry rather than announcing it. Typography does the heavy lifting: a custom sans (OpenAI Sans) set at a Major Second scale with progressively tighter tracking — -0.03em at display, normal at body — gives headlines a compressed, almost newsprint authority. Components feel deliberately lightweight: pill-shaped controls, ghost buttons, transparent surfaces, and minimal elevation. The visual mood is 'research lab notebook' — quiet, confident, and trusting the reader to focus on content rather than chrome.
 
-| Name | Value | Token | Role |
-|------|-------|-------|------|
-| Sidebar Mist | `#f9f9f9` | `--color-sidebar-mist` | Sidebar and secondary surface backgrounds — page chrome recedes behind the conversation |
-| Pure White | `#ffffff` | `--color-pure-white` | Main canvas and elevated surface — primary reading area, elevated panels, inverted text backgrounds |
-| Graphite Ink | `#0d0d0d` | `--color-graphite-ink` | Primary headings, body text, and icon fills on light surfaces. Do not promote it to the primary CTA color |
-| Mid Ash | `#5d5d5d` | `--color-mid-ash` | Secondary text and icons — supporting labels, metadata |
-| Hollow | `#8f8f8f` | `--color-hollow` | Tertiary text, disabled states, muted helper copy |
-| Hairline | `#0000001a` | `--color-hairline` | 1px borders and dividers — rgba black at ~10% opacity, the sole structural separator |
-| Hover Veil | `#0000000d` | `--color-hover-veil` | Supporting palette color for small decorative accents when the core palette needs contrast. Do not promote it to the primary CTA color |
-| Ink Press | `#000000` | `--color-ink-press` | Pressed/inverted surface fill, tooltips, scrim — true black for max contrast moments |
-| Deep Charcoal | `#00000080` | `--color-deep-charcoal` | Modal scrim overlay — 50% black behind dialogs and drawers |
-| Edge Gray | `#e6e6e6` | `--color-edge-gray` | Stronger divider or inactive surface — used sparingly as a higher-contrast border alternative |
+## Colors
 
-## Tokens — Typography
+| Name | Value | Role |
+|------|-------|------|
+| Obsidian | `#000000` | Primary text, filled action button (Try ChatGPT), strongest interactive emphasis — the single period of chromatic punctuation in an otherwise achromatic system |
+| Graphite | `#666666` | Muted captions, helper text, and de-emphasized UI labels. |
+| Smoke | `#8f8f8f` | Tertiary text, disabled states, icon strokes, placeholder text — the dimmest readable voice |
+| Paper | `#ffffff` | Page canvas, card surfaces, input fills — the infinite background that lets type and imagery carry all weight |
+| Ash | `#f1f1f1` | Subtle surface elevation, hover states, language selector background — a barely-visible plane shift from Paper |
+| Hairline | `#0000001f` | All borders, dividers, card outlines, button outlines — structure without weight, defined as a semi-transparent black rather than a gray hex |
+| Whisper | `#0000000a` | Supporting palette color for small decorative accents when the core palette needs contrast. Do not promote it to the primary CTA color |
 
-### -apple-system-body — System UI font — the entire interface renders in -apple-system / BlinkMacSystemFont / Segoe UI, inheriting the OS typeface rather than shipping a custom face. This is a deliberate utility choice: zero font load, native rendering, automatic dark-mode adaptation on macOS/iOS. Body copy sits at 16px/1.5, fine print at 14px/1.43. The 24px/600 step is the sole display tier, reserved for welcome headings — never stretched for marketing drama. · `--font-apple-system-body`
-- **Substitute:** system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif
-- **Weights:** 400
-- **Sizes:** 14px, 16px, 24px
-- **Line height:** 1.43
-- **Letter spacing:** normal
-- **Role:** System UI font — the entire interface renders in -apple-system / BlinkMacSystemFont / Segoe UI, inheriting the OS typeface rather than shipping a custom face. This is a deliberate utility choice: zero font load, native rendering, automatic dark-mode adaptation on macOS/iOS. Body copy sits at 16px/1.5, fine print at 14px/1.43. The 24px/600 step is the sole display tier, reserved for welcome headings — never stretched for marketing drama.
+## Typography
+
+### OpenAI Sans — Primary typeface for all UI text — custom geometric sans with humanist warmth, used at weight 400 for body, 500 for nav/labels/headings, 600 only for the largest headings. Signature: -0.03em tracking at display sizes creates compressed authority; +0.011em at 28px adds subtle breathing for subheads. Font features: 'calt' and 'liga' enable contextual alternates and ligatures.
+- **Substitute:** Inter, Söhne, or system-ui sans-serif
+- **Weights:** 400, 500, 600
+- **Sizes:** 13px, 14px, 16px, 17px, 18px, 22px, 28px, 48px
+- **Line height:** 1.00–1.65
+- **Letter spacing:** -0.03em at 48px, 0.011em at 28px, -0.01em at 22px and below
+- **OpenType features:** `'calt' on, 'liga' on`
 
 ### Type Scale
 
-| Role | Size | Line Height | Letter Spacing | Token |
-|------|------|-------------|----------------|-------|
-| caption | 14px | 1.43 | — | `--text-caption` |
-| body | 16px | 1.5 | — | `--text-body` |
-| heading | 24px | 1.33 | — | `--text-heading` |
+| Role | Family | Weight | Size | Line Height | Letter Spacing |
+|------|--------|--------|------|-------------|----------------|
+| caption | — | — | 13px | 1.51 | -0.13px |
+| input | — | — | 16px | 1.5 | -0.16px |
+| body-lg | — | — | 18px | 1.32 | -0.18px |
+| subheading | — | — | 22px | 1.26 | -0.22px |
+| heading | — | — | 28px | 1.21 | 0.31px |
+| display | — | — | 48px | 1.16 | -1.44px |
 
-## Tokens — Spacing & Shapes
+## Spacing & Layout
 
-**Density:** compact
+**Base unit:** 4px
 
-### Spacing Scale
+**Density:** comfortable
 
-| Name | Value | Token |
-|------|-------|-------|
-| 6 | 6px | `--spacing-6` |
-| 8 | 8px | `--spacing-8` |
-| 10 | 10px | `--spacing-10` |
-| 12 | 12px | `--spacing-12` |
-| 16 | 16px | `--spacing-16` |
-| 20 | 20px | `--spacing-20` |
+- **Page max-width:** 1200px
+- **Section gap:** 32-64px
+- **Card padding:** 12px
+- **Element gap:** 12-16px
 
 ### Border Radius
 
-| Element | Value |
-|---------|-------|
-| nav | 10px |
-| cards | 10px |
-| links | 16px |
-| badges | 0px |
-| buttons | 10px |
-
-### Layout
-
-- **Page max-width:** 1200px
-- **Section gap:** 24px
-- **Card padding:** 16px
-- **Element gap:** 6px
+- **tags:** 9999px
+- **cards:** 6px
+- **links:** 4px
+- **inputs:** 9999px
+- **buttons:** 9999px
 
 ## Components
 
-### Sidebar Item (Ghost Button)
-**Role:** Navigation row in the left rail
+### Filled Action Button
+**Role:** Primary conversion — the only filled button in the system
 
-Transparent background, Graphite Ink (#0d0d0d) text and icon, 10px border-radius, 6px vertical padding, 10px horizontal padding. On hover: fills with Hover Veil (#0000000d). No active state color — active is implied by position or a subtle background tint.
+Solid #000000 background, white text at 14px weight 500, full pill radius (9999px), 8px vertical / 20px horizontal padding. Used sparingly — currently only for 'Try ChatGPT'. This is the system's only chromatic punctuation.
 
-### Compact Icon Button
-**Role:** Toolbar action (new chat, search, images)
+### Outlined Pill Button
+**Role:** Secondary actions and category filters
 
-Transparent fill, 10px radius, 6px vertical / 8px horizontal padding, Graphite Ink icon at 16px. Behaves as the sidebar item but tighter. Hover wash via #0000000d.
+Transparent background, #000000 text at 14px weight 500, 1px solid border at rgba(0,0,0,0.12), full pill radius (9999px), 8px vertical / 20px horizontal padding. The default for tag chips like 'Talk with ChatGPT', 'Research', 'API Platform'.
 
-### Pill Primary Button (Log In)
-**Role:** Account entry action at the bottom of the sidebar
+### Ghost Text Button
+**Role:** Lowest-emphasis actions and navigation
 
-Pure White (#ffffff) fill, Graphite Ink (#0d0d0d) text, 1px Hairline (#0000001a) border, fully rounded radius (16777272px → effectively pill), 0px vertical / 16px horizontal padding. Weight 500 at 14px. The only border-bearing control on the page.
+No background, no border, #000000 text at 13-14px weight 500. Used for nav items, breadcrumb-style links, and the 'Log in' control. Relies on hover state (Whisper background) for affordance.
 
-### Sidebar Footer Block
-**Role:** Tail stack of links and CTA at sidebar bottom
+### Search Input
+**Role:** Primary interaction surface — the ChatGPT prompt bar
 
-Hollow vertical stack with no background, 10px row-gap, Hairline (#0000001a) top divider at 1px separating it from the chat list.
+Transparent background, #000000 text at 16px weight 400, 1px solid border at rgb(229,231,235), full pill radius (9999px), 10px vertical / 24px right / 52px left padding (left padding reserves space for an icon). Placeholder at #666666. No visible focus ring — system relies on the cursor.
 
-### Helper Text Block
-**Role:** Body-sm description under a link in the sidebar footer
+### Article Card
+**Role:** Content cards in the news/stories grid
 
-Hollow (#8f8f8f) 12-14px regular text, line-height 1.43, no background, acts as secondary helper copy next to a primary action.
+Transparent background, 6px border-radius, no shadow, no padding — the card is defined entirely by its image and text block. The 6px radius applies to images, creating softly clipped photographic edges. Text sits directly below or overlaid on the image.
 
-### Conversation Card
-**Role:** Recent chat row in the sidebar list
+### Featured Article Hero Card
+**Role:** Large editorial card — one per grid section
 
-Transparent default with 10px radius and 6px vertical padding. On hover: #0000000d wash. Title in Graphite Ink at 14px/500 weight; preview in Hollow at 13px.
+Full-width or two-column span, large photographic header (planets, space, etc.), 48px display headline in weight 500 with -0.03em tracking below, metadata at 14px weight 500 in Graphite (#666666). The image does the visual work; type provides editorial gravity.
 
-### Hairline Divider
-**Role:** Section separator
+### Section Header
+**Role:** Dividing labels between content zones
 
-1px solid Hairline (#0000001a). The only structural divider in the system — no double rules, no shadows.
+Small caps-style labels at 14px weight 500 in Graphite, generous top margin (32-64px), often accompanied by a 'View more' ghost link. Functions as a section anchor without using a colored bar or rule.
 
-### Surface Card (Elevated Panel)
-**Role:** Floating panel or popover
+### Top Navigation Bar
+**Role:** Global site navigation
 
-Pure White (#ffffff) background, 10px radius, 1px Hairline border. Elevation is expressed by border, not shadow. Matches the elevation token #ffffff.
+Fixed or sticky top bar, Paper (#ffffff) background, OpenAI wordmark left, nav items (Research, Products, Business, Developers, Company, Foundation) at 14px weight 500 in #000, search icon, Log in ghost button, Try ChatGPT filled button right. Total height ~64px. No border-bottom — separation is whitespace alone.
 
-### Tooltip
-**Role:** Hover label on icon buttons
+### Tag Chip Row
+**Role:** Suggested prompts below the search input
 
-Ink Press (#000000) fill, white text, small radius. Uses the --bg-tooltip token. Compact, no arrow ornamentation visible.
+Horizontal row of outlined pill buttons (see Outlined Pill Button) at 13-14px, spaced 8px apart. Functions as quick-action shortcuts. Sits centered below the prompt input on the hero.
 
-### Scrim Overlay
-**Role:** Modal backdrop
+### Footer
+**Role:** Site footer with legal and secondary navigation
 
-Deep Charcoal (#00000080) at 50% opacity. Single-layer, no blur.
-
-### Badge / Chip
-**Role:** Tag or status indicator
-
-Sidebar Mist (#f9f9f9) background, Graphite Ink text, 0px radius (square corners — a deliberate break from the 10px button radius), no padding wrapper. Used for low-prominence labels.
+Paper background, multi-column layout with link groups at 13-14px weight 500, Graphite text color, generous top padding (64px+). No social icons, no newsletter signup — utilitarian and quiet.
 
 ## Do's and Don'ts
 
 ### Do
-- Use Graphite Ink (#0d0d0d) for all primary text and icons — never pure #000 for body text; reserve #000 for pressed states, tooltips, and scrims.
-- Set element gap to 6px and section gap to 24px; rhythm comes from consistent 6/10/16/24 increments, not arbitrary spacing.
-- Keep the entire interface achromatic — no brand blue, no green status, no red error. State changes are communicated by weight, fill veil, and position, not hue.
-- Use 10px border-radius for all buttons, sidebar items, and cards. Only the Log In CTA breaks the system with a full pill radius.
-- Render all text in the system font stack (-apple-system, system-ui, BlinkMacSystemFont). Do not load custom webfonts.
-- Express elevation with a 1px Hairline border (#0000001a), never with box-shadow. The system is flat by conviction.
-- Use #0000000d (5% black veil) for every hover state — the interface breathes, it does not flash.
+- Use #000000 as the sole filled button color — the 'Try ChatGPT' button is the system's only chromatic punctuation and filling any other button dilutes its signal
+- Set all borders to rgba(0,0,0,0.12) rather than a gray hex — the semi-transparent black adapts to the background and maintains consistent visual weight on white and light-gray surfaces
+- Apply 9999px radius to all buttons, tags, and inputs — the pill shape is the primary geometric signature and must be consistent across all interactive elements
+- Use 6px radius for cards and images — this near-zero radius is a deliberate choice that feels architectural rather than soft; avoid 12px or 16px which would shift the system toward 'friendly SaaS' territory
+- Set body text at 17px with 1.65 line-height and -0.01em tracking — the slightly larger base and generous leading create the editorial reading rhythm
+- Use weight 500 for navigation, labels, and subheads — weight 400 is reserved for body copy and weight 600 only for the 28px heading tier
+- Trust whitespace over dividers — sections are separated by 32-64px gaps and margin-bottom rather than horizontal rules or background color shifts
 
 ### Don't
-- Do not introduce any chromatic accent color — the UI is intentionally grayscale and adding a brand hue breaks the signal that color = data, never decoration.
-- Do not use shadows for elevation. Hairline borders only; shadows make a flat utility interface feel ornamental.
-- Do not set button text or icons to pure #000000; use #0d0d0d for softer 18.5:1 contrast. Pure black belongs only on inverted surfaces.
-- Do not mix pill radii and 10px radii within the same control group — pick one radius per control type and stay consistent.
-- Do not use text larger than 24px anywhere in the UI; the display tier is intentionally modest to keep the interface conversational, not promotional.
-- Do not add background fills to navigation rows in their default state — chrome should recede until hovered.
-- Do not load custom webfonts; the system font is a load-time and a11y advantage, not a compromise.
-
-## Surfaces
-
-| Level | Name | Value | Purpose |
-|-------|------|-------|---------|
-| 0 | Sidebar Canvas | `#f9f9f9` | Left rail background, sets off the main conversation area |
-| 1 | Conversation Canvas | `#ffffff` | Main reading and writing surface where the chat thread lives |
-| 2 | Elevated Panel | `#ffffff` | Popovers, menus, and floating UI — same white but bordered with hairline to lift above the canvas |
+- Do not introduce accent colors, gradients, or brand hues — the system is deliberately monochromatic; any chromatic addition competes with the single black CTA and breaks the editorial mood
+- Do not use box-shadows on cards or content surfaces — the design relies on hairline borders and whitespace for structure; shadows would add visual noise the system explicitly avoids
+- Do not use 8px or 12px radius on buttons — the pill (9999px) is a signature; non-pill buttons would break visual continuity with the tag chip row and search input
+- Do not use weight 700 or 800 anywhere — the heaviest weight in the system is 600, and only at the 28px heading size; heavier weights would feel aggressive against the restrained type
+- Do not set body text below 16px — 17px is the base; smaller text (13-14px) is reserved for nav, labels, and metadata where compactness is functional
+- Do not use colored backgrounds for section breaks — separate sections with whitespace alone; the system has exactly two surface tones (Paper and Ash) and they appear only for interactive hover states
+- Do not add icons inside buttons or text links — the system is text-first; icons appear only in the search input and nav utility area
 
 ## Elevation
 
-Elevation is expressed exclusively through 1px hairline borders (#0000001a) on white surfaces, never through drop shadows. The interface is flat by conviction: shadows would make a utility product feel ornamental and would compete with the conversation text that is the actual product. The only exception is the tooltip, which uses a true black fill (#000) to invert against the light surface.
+- **Outlined Pill Button (hover state):** `rgba(0, 0, 0, 0.02) 0px 4px 6px 0px, rgba(0, 0, 0, 0.05) 0px 0px 2px 0px`
+
+## Surfaces
+
+- **Paper** (`#ffffff`) — Base canvas — all content sits directly on this surface
+- **Ash** (`#f1f1f1`) — Elevated surface for language selector and subtle hover/selected states
+- **Whisper** (`#0000000a`) — Interactive surface tint for ghost button hover and card selection
 
 ## Imagery
 
-No photography, no illustrations, no product screenshots. The interface is pure UI — iconography is monochrome line icons (16px, 1.5px stroke implied by nav/fill count), icons-only visual language. No decorative imagery occupies space; the conversation text and user-generated content are the only visual content. Avatar circles for user/assistant messages are minimal solid fills. Density is text-dominant — the interface exists to frame text.
+Photography is high-impact and editorial: large-format cosmic/space imagery (planets, solar surfaces, nebulae) for hero articles, product UI screenshots for business sections, and abstract gradient washes (sunrise oranges, soft purples) for story cards. Images are edge-to-edge within cards with 6px corner radius — no padding insets, no drop shadows. The visual treatment is cinematic and full-bleed rather than lifestyle or product-shot. Illustrations and 3D renders are absent; the system uses photography as its primary visual medium. Icon style is minimal: thin-stroke line icons (search magnifier, arrow-up submit) at monochrome #000, no filled icons, no multi-color iconography.
 
 ## Layout
 
-Two-column shell: a fixed-width sidebar (260-280px) on the left with a 52px header strip (model selector + account) and a scrollable chat history, and a flexible main column that hosts the conversation thread with a generous max-width of ~720-768px centered horizontally for reading comfort. The hero is implicit — the first screen shows the welcome state (24px/600 headline, helper copy, login CTA stacked in the lower-left of the sidebar). Vertical rhythm uses 24px section gaps and 6px element gaps. No alternating dark/light bands — the entire page is a single light surface with one sidebar accent. Navigation is a minimal vertical list with no top-bar global nav; the brand is absent from the viewport chrome.
-
-## Agent Prompt Guide
-
-## Quick Color Reference
-- text: #0d0d0d (Graphite Ink — primary text and icons)
-- background: #ffffff (Pure White — main canvas)
-- sidebar background: #f9f9f9 (Sidebar Mist — left rail)
-- border: #0000001a (Hairline — 1px rgba black at ~10%)
-- secondary text: #5d5d5d (Mid Ash)
-- muted text: #8f8f8f (Hollow)
-- primary action: no distinct CTA color
-
-## Example Component Prompts
-1. Sidebar navigation item: 10px border-radius, transparent background, Graphite Ink (#0d0d0d) 14px regular text and 16px icon, 6px vertical padding and 10px horizontal padding. On hover, fill with #0000000d at the same radius. No border in default state.
-2. Welcome heading: 24px weight 600 Graphite Ink (#0d0d0d), line-height 1.33, letter-spacing normal, system font stack. Followed by 16px/400 body copy in Graphite Ink at line-height 1.5.
-3. Pill Log In button at sidebar bottom: Pure White (#ffffff) fill, 1px Hairline (#0000001a) border, fully rounded radius (9999px), Graphite Ink text at 14px weight 500, 0px vertical / 16px horizontal padding. No fill change on hover — only border darkens to #00000026.
-4. Hairline divider: 1px solid #0000001a, full container width, no margin — sits flush between sidebar sections.
-5. Helper copy block: Hollow (#8f8f8f) 14px regular text at line-height 1.43, no background, used as secondary description beneath a primary action link in the sidebar footer.
+Page model is max-width contained (approximately 1200px) with generous side margins. The hero is a vertically centered prompt interaction on an empty white canvas — the search input is the entire first screen, creating a 'command line' feeling. Below the hero, content flows in a 2-column asymmetric grid: a large featured article (spanning ~65% width) on the left with full-bleed photography, and a stacked column of smaller article cards on the right. Section rhythm is consistent vertical spacing (32-64px gaps) with no background color shifts between sections. Navigation is a minimal top bar — no mega-menu, no sidebar. The overall density is spacious and editorial: one article per visual unit, large type, breathing room between elements. No card grids with 3+ columns; the layout favors 2-column editorial compositions over dashboard-style information density.
 
 ## Similar Brands
 
-- **Linear** — Same achromatic-by-default philosophy with a single subtle background tint for the sidebar; relies on hairline borders and weight rather than color to communicate hierarchy
-- **Notion** — Near-identical system font usage, 10-12px radius on controls, grayscale-only interface where the document content provides all visual interest
-- **Vercel** — Minimal utility UI with hairline 1px borders instead of shadows, system fonts, and zero chromatic accents in the chrome
-- **Things 3 (Cultured Code)** — Quiet grayscale sidebar + white main surface, restrained typographic scale, and structural separation through dividers rather than elevation
-
-## Quick Start
-
-### CSS Custom Properties
-
-```css
-:root {
-  /* Colors */
-  --color-sidebar-mist: #f9f9f9;
-  --color-pure-white: #ffffff;
-  --color-graphite-ink: #0d0d0d;
-  --color-mid-ash: #5d5d5d;
-  --color-hollow: #8f8f8f;
-  --color-hairline: #0000001a;
-  --color-hover-veil: #0000000d;
-  --color-ink-press: #000000;
-  --color-deep-charcoal: #00000080;
-  --color-edge-gray: #e6e6e6;
-
-  /* Typography — Font Families */
-  --font-apple-system-body: '-apple-system-body', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-
-  /* Typography — Scale */
-  --text-caption: 14px;
-  --leading-caption: 1.43;
-  --text-body: 16px;
-  --leading-body: 1.5;
-  --text-heading: 24px;
-  --leading-heading: 1.33;
-
-  /* Typography — Weights */
-  --font-weight-regular: 400;
-  --font-weight-medium: 500;
-  --font-weight-semibold: 600;
-
-  /* Spacing */
-  --spacing-6: 6px;
-  --spacing-8: 8px;
-  --spacing-10: 10px;
-  --spacing-12: 12px;
-  --spacing-16: 16px;
-  --spacing-20: 20px;
-
-  /* Layout */
-  --page-max-width: 1200px;
-  --section-gap: 24px;
-  --card-padding: 16px;
-  --element-gap: 6px;
-
-  /* Border Radius */
-  --radius-lg: 10px;
-  --radius-2xl: 16px;
-
-  /* Named Radii */
-  --radius-nav: 10px;
-  --radius-cards: 10px;
-  --radius-links: 16px;
-  --radius-badges: 0px;
-  --radius-buttons: 10px;
-
-  /* Surfaces */
-  --surface-sidebar-canvas: #f9f9f9;
-  --surface-conversation-canvas: #ffffff;
-  --surface-elevated-panel: #ffffff;
-}
-```
-
-### Tailwind v4
-
-```css
-@theme {
-  /* Colors */
-  --color-sidebar-mist: #f9f9f9;
-  --color-pure-white: #ffffff;
-  --color-graphite-ink: #0d0d0d;
-  --color-mid-ash: #5d5d5d;
-  --color-hollow: #8f8f8f;
-  --color-hairline: #0000001a;
-  --color-hover-veil: #0000000d;
-  --color-ink-press: #000000;
-  --color-deep-charcoal: #00000080;
-  --color-edge-gray: #e6e6e6;
-
-  /* Typography */
-  --font-apple-system-body: '-apple-system-body', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-
-  /* Typography — Scale */
-  --text-caption: 14px;
-  --leading-caption: 1.43;
-  --text-body: 16px;
-  --leading-body: 1.5;
-  --text-heading: 24px;
-  --leading-heading: 1.33;
-
-  /* Spacing */
-  --spacing-6: 6px;
-  --spacing-8: 8px;
-  --spacing-10: 10px;
-  --spacing-12: 12px;
-  --spacing-16: 16px;
-  --spacing-20: 20px;
-
-  /* Border Radius */
-  --radius-lg: 10px;
-  --radius-2xl: 16px;
-}
-```
+- **Anthropic** — Same monochromatic editorial approach — black text on white, no accent colors, pill-shaped buttons, and a focus on large-format photography for content cards
+- **Vercel** — Identical restraint philosophy — pure black/white palette, hairline borders at low opacity, generous whitespace, and the same anti-decorative flatness
+- **Linear** — Similar dark-on-light typographic confidence with custom sans, pill buttons, and 6-8px card radii — though Linear adds subtle gradients Linear omits
+- **Stripe** — Shared editorial-composition approach: 2-column asymmetric article grids, large display headlines, photography as visual anchor, and zero chromatic UI accents
+- **xAI / Grok** — Monochrome product interface with a single filled black CTA, pill-shaped controls, and the same 'research lab' typographic authority
